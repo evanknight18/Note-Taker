@@ -27,5 +27,14 @@ app.post('/api/notes', (req, res) => {
   res.json(newNote);
 });
 
+// DELETE route (bonus)
+app.delete('/api/notes/:id', (req, res) => {
+    const noteId = req.params.id;
+    let notes = JSON.parse(fs.readFileSync('./db/db.json', 'utf8'));
+    notes = notes.filter(note => note.id !== noteId);
+    fs.writeFileSync('./db/db.json', JSON.stringify(notes));
+    res.json({ success: true });
+  });
+
 // Start server
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
