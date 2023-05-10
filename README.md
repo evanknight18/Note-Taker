@@ -22,7 +22,7 @@ npm install express, fs
 
 ## Usage
 
-[N/A](https://polar-beyond-78225.herokuapp.com/)
+(https://polar-beyond-78225.herokuapp.com/)
 
 ## License
 
