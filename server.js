@@ -15,17 +15,18 @@ const readFromFile = util.promisify(fs.readFile);
 // HTML routes
 app.get('/notes', (req, res) => res.sendFile(path.join(__dirname, '/public/notes.html')));
 
-app.get('*', (req, res) => res.sendFile(path.join(__dirname, '/public/index.html')));
+app.get('/', (req, res) => res.sendFile(path.join(__dirname, '/public/index.html')));
 
 // API routes
 app.get('/api/notes', (req, res) => {
-  // const notes = JSON.parse(fs.readFileAsync('db/db.json', 'utf8'));
-  // console.log(notes);
-  // let parsedNotes = [].concat(notes);
-  // console.log(parsedNotes);
-  // res.json(parsedNotes);
-  readFromFile('./db/db.json').then((data) => res.json(JSON.parse(data)));
+  readFromFile('./db/db.json')
+    .then((data) => res.json(JSON.parse(data)))
+    .catch((err) => {
+      console.error(err);
+      res.status(500).json({ error: 'An error occurred while reading the file.' });
+    });
 });
+
 
 app.post('/api/notes', (req, res) => {
   const newNote = req.body;
