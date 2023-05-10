@@ -18,7 +18,7 @@ This project is a note taking app that runs on its own express back end server
 
 ## Installation
 
-npm install express, path, fs, and uniqid
+npm install express, path, fs
 
 ## Usage
 
